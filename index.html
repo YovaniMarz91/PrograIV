@@ -1,0 +1,89 @@
+<!-- HTML -> Lenguaje de Marcacion de Hipertexto -->
+<!DOCTYPE html><!--Definimos el tipo de documento vamos a utilizar -->
+<html lang="es"><!-- Establecemos el idioma -->
+<head><!-- Define la cabecera del documento -->
+    <meta charset="UTF-8"><!-- Definimos la codificacion del documento  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenidos a Progra IV</title><!-- Titulo de la aplicacion en la ventana del navegador -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body><!-- Cuerpo de mi documento -->
+    <div id="appProductos" class="container-fluid">
+        <form v-on:submit.prevent="guardarProducto" v-on:reset="limpiar">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="row p-2">
+                        <div class="col-sm text-center text-white bg-primary">
+                            <h5>REGISTRO DE PRODUCTOS</h5>
+                        </div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-sm">CODIGO:</div>
+                        <div class="col-sm">
+                            <input v-model="producto.codigo" required pattern="^[A-Z]{2}[0-9]{8}$" type="text" class="form-control form-control-sm" >
+                        </div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-sm">DESCRIPCION: </div>
+                        <div class="col-sm">
+                            <input v-model="producto.descripcion" required pattern="[A-ZÑña-z0-9 ]{5,65}" type="text" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-sm">PRECIO:</div>
+                        <div class="col-sm">
+                            <input v-model="producto.precio" required pattern="^[0-9](.)+?[0-9]$" type="text" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-sm">IMAGEN:</div>
+                        <div class="col-sm">
+                            <img width="200" height="200" class="rounded-circle" :src="producto.img">
+                            <!--<img class="img-fluid" :src="producto.img2">-->
+                            <input v-on:change="obtenerImg($event)" multiple type="file" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="row -p-2">
+                        <div class="col-sm text-center">
+                            <input type="submit" value="Guardar" class="btn btn-dark">
+                            <input type="reset" value="Limpiar" class="btn btn-warning">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm"></div>
+                <div class="col-sm-6 p-2">
+                    <div class="row text-center text-white bg-primary">
+                        <div class="col"><h5>PRODUCTOS REGISTRADOS</h5></div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <table class="tble table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>CODIGO</th>
+                                        <th>DESCRIPCION</th>
+                                        <th>PRECIO</th>
+                                        <th>IMG</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="pro in productos" v-on:click="mostrarProducto(pro)">
+                                        <td>{{ pro.codigo }}</td>
+                                        <td>{{ pro.descripcion }}</td>
+                                        <td>{{ pro.precio }}</td>
+                                        <td>{{ pro.img }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
