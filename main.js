@@ -56,7 +56,20 @@ var appVue = new Vue({
             this.producto.descripcion='';
             this.producto.precio='';
             this.producto.img='';
-        }
+        },
+        borrarProducto(){
+            /**
+             * BD Web SQL
+             */
+            miDBProductos.transaction(tran=>{
+                tran.executeSql('INSERT INTO productos(idProducto,codigo,descripcion,precio,img) VALUES(?,?,?,?,?) ',
+                    [++id,this.producto.codigo,this.producto.descripcion,this.producto.precio, this.producto.img]);
+                this.obtenerProductos();
+                this.limpiar();
+            }, err=>{
+                console.log( err );
+            });
+        },
     },
     created(){
         miDBProductos.transaction(tran=>{
