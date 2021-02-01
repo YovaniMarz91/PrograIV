@@ -61,14 +61,15 @@ var appVue = new Vue({
             /**
              * BD Web SQL
             */
-            miDBProductos.transaction(tran=>{
-                tran.executeSql('DELETE FROM productos WHERE idProducto=?', [pro.idProducto]);
-                this.obtenerProductos();
-                this.limpiar();
-            }, err=>{
-                console.log( err );
-            });
-            console.log(pro.idProducto);
+            if(confirm("¿Eliminar?")){
+                miDBProductos.transaction(tran=>{
+                    tran.executeSql('DELETE FROM productos WHERE idProducto=?', [pro.idProducto]);
+                    this.obtenerProductos();
+                    this.limpiar();
+                }, err=>{
+                    console.log( err );
+                });
+            }
         }
     },
     created(){
