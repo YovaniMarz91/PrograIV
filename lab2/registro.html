@@ -14,30 +14,30 @@
             <div class="card mt-4 offset-lg-2 col-lg-8 text-white bg-primary" >
                 <h5 class="card-header">Registro de alumnos</h5>
                 <div class="card-body">
-                    <form v-on:submit.prevent="guardarAlumno" v-on:reset="limpiar">
+                    <form>
                         <div class="mb-3">
                           <label for="txt_nombre" class="form-label">Nombre Completo</label>
-                          <input v-model="alumno.nombre" type="text" class="form-control" id="txt_nombre">
+                          <input type="text" class="form-control" id="txt_nombre">
                         </div>
                         <div class="mb-3">
                             <label for="txt_correo" class="form-label">Correo</label>
-                            <input  v-model="alumno.correo" type="email" class="form-control" id="txt_correo">
+                            <input type="email" class="form-control" id="txt_correo">
                           </div>
                           <div class="mb-3">
                             <label for="txt_direccion" class="form-label">Direccion</label>
-                            <input v-model="alumno.direccion" type="text" class="form-control" id="txt_direccion">
+                            <input type="text" class="form-control" id="txt_direccion">
                           </div>
                           <div class="mb-3">
                             <label for="txt_telefono" class="form-label">Telefono</label>
-                            <input v-model="alumno.telefono" type="text" class="form-control" id="txt_telefono">
+                            <input type="text" class="form-control" id="txt_telefono">
                           </div>
                         <div class="mb-3">
                           <label for="txt_contrasena" class="form-label">Contraseña</label>
-                          <input v-model="alumno.contrasena" type="password" class="form-control" id="txt_contrasena">
+                          <input type="password" class="form-control" id="txt_contrasena">
                         </div>
                         <div class="mb-3">
                             <label for="txt_contrasena2" class="form-label">Confirmar Contraseña</label>
-                            <input v-model="alumno.contrasena2" type="password" class="form-control" id="txt_contrasena2">
+                            <input type="password" class="form-control" id="txt_contrasena2">
                           </div>
                         <button type="submit" class="btn btn-success">Registrar</button>
                       </form>
@@ -51,5 +51,11 @@
     <script src="https://unpkg.com/vue-cookies@1.5.12/vue-cookies.js"></script>
 
     <script src="main.js"></script>
+
+    <script>
+      if ($cookies.get('login') != '1') {
+        window.location.replace(base + "login.html");
+      }
+    </script>
 </body>
 </html>
