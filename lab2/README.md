@@ -1,0 +1,1 @@
+Cambiar window.base = 'http://localhost/PrograIV/lab2/' en main.js por la dirección que le corresponda.;
