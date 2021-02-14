@@ -15,7 +15,8 @@ var appVue = new Vue({
             telefono : '',
             contrasenia : '',
             contrasenia2 : ''
-        }
+        },
+        dat_inscripcion: []
     },
     methods:{
         guardarAlumno(){
@@ -62,6 +63,41 @@ var appVue = new Vue({
             }, err=>{
                 console.log( err );
             });
+        },
+        inscripcion(id, nombre){
+            var strUser = document.getElementById(id).value;
+            let horario = '';
+
+            if (strUser != '0') {
+                if (document.getElementById('che_mat').checked) {
+                    switch (strUser) {
+                        case '1':
+                            horario = 'Mi: Vespertino 14:30-16:10. Vi: Vespertino 12:40-14:20.';
+                            break;
+                        case '2':
+                            horario = 'Ju: Vespertino 14:30-16:10. Práctica - Grupo 1 Mi: Matutino 07:00-08:40.';
+                            break;
+                        case '3':
+                            horario = 'Ma: Vespertino 12:40-14:20. Ju: Vespertino 12:40-14:20.';
+                            break;
+                        default:
+                            break;
+                    }
+    
+                    tmp_data = [{
+                        nombre : nombre,
+                        horario : horario
+                    }];
+    
+                    this.dat_inscripcion = this.dat_inscripcion.concat(tmp_data);
+                }
+                else {
+                    alert('Usted no esta matriculado');
+                }
+            }
+            else {
+                alert('Selecciona una horario');
+            }
         }
     },
     created(){
