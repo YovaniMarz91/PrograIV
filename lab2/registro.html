@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Laboratorio 2</title>
+</head>
+<body>
+  <div class="container" id="appUniversidad">
+    <div class="row">
+      <div class="card mt-4 offset-lg-3 col-lg-6">
+        <div class="mb-3">
+          <div class="card mt-4">
+            <h5 class="card-header">Materias inscritas</h5>
+            <div class="card-body">
+              <p v-for="ins in dat_inscripcion"><b>{{ ins.nombre }}</b><br>
+              {{ ins.horario }}</p>
+            </div>
+        </div>
+
+        <div class="form-check mt-4">
+          <input class="form-check-input" type="checkbox" value="" id="che_mat">
+          <label class="form-check-label" for="che_mat">
+            Matriculado
+          </label>
+        </div>
+
+        <div class="mb-3">
+          <div class="card mt-4">
+            <h5 class="card-header">Programacion</h5>
+            <div class="card-body">
+              <h5 class="card-title">Horarios</h5>
+              <select class="form-select" aria-label="Default select example" id="sel_progra">
+                <option selected value="0" >Seleccionar</option>
+                <option value="1">Mi: Vespertino 14:30-16:10. Vi: Vespertino 12:40-14:20.</option>
+                <option value="2">Ju: Vespertino 14:30-16:10. Práctica - Grupo 1 Mi: Matutino 07:00-08:40.</option>
+                <option value="3"> Ma: Vespertino 12:40-14:20. Ju: Vespertino 12:40-14:20.</option>
+              </select>
+              <button type="button" class="btn mt-2 btn-success" v-on:click="inscripcion('sel_progra', 'Programacion')">Inscribir</button>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="card mt-4">
+            <h5 class="card-header">Redes</h5>
+            <div class="card-body">
+              <h5 class="card-title">Horarios</h5>
+              <select class="form-select" aria-label="Default select example" id="sel_redes">
+                <option selected value="0" >Seleccionar</option>
+                <option value="1">Mi: Vespertino 14:30-16:10. Vi: Vespertino 12:40-14:20. </option>
+                <option value="2">Ju: Vespertino 14:30-16:10. Práctica - Grupo 1 Mi: Matutino 07:00-08:40.</option>
+                <option value="3"> Ma: Vespertino 12:40-14:20. Ju: Vespertino 12:40-14:20. </option>
+              </select>
+              <button type="button" class="btn mt-2 btn-success" v-on:click="inscripcion('sel_redes', 'Redes')">Inscribir</button>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="card mt-4">
+            <h5 class="card-header">Gestion de Proyectos</h5>
+            <div class="card-body">
+              <h5 class="card-title">Horarios</h5>
+              <select class="form-select" aria-label="Default select example" id="sel_gestion">
+                <option selected value="0" >Seleccionar</option>
+                <option value="1">Mi: Vespertino 14:30-16:10. Vi: Vespertino 12:40-14:20.</option>
+                <option value="2">Ju: Vespertino 14:30-16:10. Práctica - Grupo 1 Mi: Matutino 07:00-08:40.</option>
+                <option value="3"> Ma: Vespertino 12:40-14:20. Ju: Vespertino 12:40-14:20.</option>
+              </select>
+              <button type="button" class="btn mt-2 btn-success" v-on:click="inscripcion('sel_gestion', 'Gestion de Proyectos')">Inscribir</button>
+            </div>
+          </div>
+        </div>
+      
+        </div> 
+    </div>
+  </div>  
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-cookies@1.5.12/vue-cookies.js"></script>
+
+    <script src="main.js"></script>
+
+    <script>
+      if ($cookies.get('login') != '1') {
+        window.location.replace(base + "login.html");
+      }
+    </script>
+</body>
+</html>
